@@ -7,20 +7,20 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule} from '@angular/material';
 import {FlexLayoutModule} from '@angular/flex-layout';
 
-import { AnimalDetailComponent } from './animal-detail/animal-detail.component';
-import { AnimalSideNavComponent } from './animal-sidenav/animal-sidenav.component';
+import { StudentDetailComponent } from './student-detail/student-detail.component';
+import { StudentSideNavComponent } from './student-sidenav/student-sidenav.component';
 import { AppComponent } from './app.component';
 import { DialogComponent } from './dialog/dialog.component';
-import { AnimalService } from './shared/animal.service';
-import { AnimalSelectedService } from './shared/animal-selected.service';
+import { StudentService } from './shared/student.service';
+import { StudentSelectedService } from './shared/student-selected.service';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     DialogComponent,
-    AnimalSideNavComponent,
-    AnimalDetailComponent
+    StudentSideNavComponent,
+    StudentDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +30,7 @@ import { AnimalSelectedService } from './shared/animal-selected.service';
     FlexLayoutModule,
     BrowserAnimationsModule,
   ],
-  providers: [AnimalService, AnimalSelectedService],
+  providers: [StudentService, StudentSelectedService],
   entryComponents: [DialogComponent],
   bootstrap: [AppComponent]
 })

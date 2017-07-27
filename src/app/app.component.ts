@@ -3,9 +3,9 @@ import { MdIconRegistry, MdDialog } from '@angular/material';
 import { Observable, Subscription } from 'rxjs/Rx';
 import { DomSanitizer } from '@angular/platform-browser';
 import { DialogComponent } from './dialog/dialog.component';
-import { AnimalFactory } from './shared/animal.factory';
-import { Animal } from './shared/animal.model';
-import { AnimalService } from './shared/animal.service';
+import { StudentFactory } from './shared/student.factory';
+import { Student } from './shared/student.model';
+import { StudentService } from './shared/student.service';
 
 @Component({
   selector: 'app-root',
@@ -15,47 +15,44 @@ import { AnimalService } from './shared/animal.service';
 export class AppComponent
 {
 
-  animals: Array<Animal>;
-  selectedAnimal: Animal;
+  students: Array<Student>;
+  selectedStudent: Student;
 
   constructor(private iconRegistry: MdIconRegistry, private sanitizer: DomSanitizer,
-              private dialog: MdDialog, private animalService: AnimalService)
+              private dialog: MdDialog, private studentService: StudentService)
   {
     this.registerIcons();
 
-    const sub: Subscription =  animalService.getAnimals()
-    // .filter(x => x.length > 5)
-    .subscribe((animals) =>
+    const sub: Subscription =  studentService.getStudents()
+    .subscribe((students) =>
     {
-      this.animals = animals;
-      if (animals.length) this.selectedAnimal = animals[0];
+      this.students = students;
+      if (students.length) this.selectedStudent = students[0];
     });
-
-    //sub.unsubscribe();
   }
 
-  onAnimalSelected($event)
+  onStudentSelected($event)
   {
-    this.selectedAnimal = $event;
+    this.selectedStudent = $event;
   }
 
-  openAnimalDialog()
+  openStudentDialog()
   {
     const self = this;
     this.dialog.open(DialogComponent).afterClosed()
       .filter(result => !!result)
       .subscribe(data => {
-         const animal: Animal = AnimalFactory.CreateAnimal(data);
-         self.animals.push(animal);
-         self.selectedAnimal = animal;
+         const student: Student = StudentFactory.CreateStudent(data);
+         self.students.push(student);
+         self.selectedStudent = student;
       });
   }
 
   registerIcons()
   {
-    const catSafeUrl = this.sanitizer.bypassSecurityTrustResourceUrl('./assets/Cat.svg');
-    const dogSafeUrl = this.sanitizer.bypassSecurityTrustResourceUrl('./assets/Dog.svg');
-    this.iconRegistry.addSvgIcon('Cat', catSafeUrl);
-    this.iconRegistry.addSvgIcon('Dog', dogSafeUrl);
+    // const catSafeUrl = this.sanitizer.bypassSecurityTrustResourceUrl('./assets/Cat.svg');
+    // const dogSafeUrl = this.sanitizer.bypassSecurityTrustResourceUrl('./assets/Dog.svg');
+    // this.iconRegistry.addSvgIcon('Cat', catSafeUrl);
+    // this.iconRegistry.addSvgIcon('Dog', dogSafeUrl);
   }
 }

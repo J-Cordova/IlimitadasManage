@@ -1,28 +1,31 @@
-<h3>Add Animal</h3>
-<form #form="ngForm" (ngSubmit)="dialogRef.close(animal)" ngNativeValidate>
+<h3>Add Student</h3>
+<form #form="ngForm" (ngSubmit)="dialogRef.close(student)" ngNativeValidate>
   <div fxLayout="column" fxLayoutGap="8px">
+
+
+
 
     <div fxLayout="row" fxLayoutAlign="start center">
       <md-icon mdInput svgIcon="{{selectedAvatar}}" class="avatar"></md-icon>
-        <md-select (change)="handleAnimalTypeChange($event)" [(ngModel)]="Type" name="Type" fxFlex >
+        <md-select (change)="handleStudentTypeChange($event)" [(ngModel)]="Type" name="Type" fxFlex >
           <md-option value="0">Dog</md-option>
           <md-option value="1">Cat</md-option>
         </md-select>
       </div>
 
     <md-input-container>
-      <input mdInput [(ngModel)]="animal.Name" name="Name" placeholder="Name" required>
+      <input mdInput [(ngModel)]="student.Name" name="Name" placeholder="Name" required>
     </md-input-container>
 
     <md-input-container>
-      <textarea mdInput [(ngModel)]="animal.Description" name="Description"  placeholder="Description" rows="15" cols="60"></textarea>
+      <textarea mdInput [(ngModel)]="student.Description" name="Description"  placeholder="Description" rows="15" cols="60"></textarea>
     </md-input-container>
 
   </div>
 
   <md-dialog-actions align="end">
     <button md-button type="button" (click)="dialogRef.close()">Cancel</button>
-    <button md-button type="submit" ngForm color="accent">Save Animal</button>
+    <button md-button type="submit" ngForm color="accent">Save Student</button>
   </md-dialog-actions>
 
 </form>

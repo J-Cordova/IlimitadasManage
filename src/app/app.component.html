@@ -1,21 +1,19 @@
 <div fxLayout="column" fxFlex class="dark-theme">
 
   <md-toolbar color="primary">
-    <span>Animal Viewer</span>
+    <span>Student Viewer</span>
     <span fxFlex></span>
   </md-toolbar>
 
   <md-sidenav-container fxFlex>
 
-    <animal-sidenav [animals]="animals" (selectedAnimal)="onAnimalSelected($event)"></animal-sidenav>
+    <student-sidenav [students]="students" (selectedStudent)="onStudentSelected($event)"> </student-sidenav>
 
-    <animal-detail [selectedAnimal]="selectedAnimal"></animal-detail>
-    <!--<animal-detail></animal-detail>-->
-
-
+    <student-detail [selectedStudent]="selectedStudent"> </student-detail>
+    <!--<student-detail></student-detail>-->
   </md-sidenav-container>
 
-  <button md-fab (click)="openAnimalDialog()" class="fab-bottom-right">
+  <button md-fab (click)="openStudentDialog()" class="fab-bottom-right">
     <md-icon>add</md-icon>
   </button>
 
