@@ -12,7 +12,6 @@ export class StudentDetailComponent
 {
   @Input() selectedStudent: Student;
 
-  //selectedAnimal: Animal;
   constructor(private animalSelectService: StudentSelectedService)
   {
      //animalSelectService.animalSelectedEvent.subscribe(animal => this.selectedAnimal = animal);

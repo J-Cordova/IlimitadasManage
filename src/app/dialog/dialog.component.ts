@@ -9,8 +9,8 @@ export class DialogComponent {
   constructor(public dialogRef: MdDialogRef<DialogComponent>) {}
 
   student: Student = new Student();
-  Type: String = '0';
-  avatars: Array<String> = ['Dog', 'Cat'];
+  //Type: String = '0';
+  //avatars: Array<String> = ['Dog', 'Cat'];
   //selectedAvatar = this.avatars[parseInt(this.Type, 10)];
 
   handleStudentTypeChange($event)

@@ -1,9 +1,9 @@
-    <md-sidenav mode="side" opened>
+    <md-sidenav fxflex style="flex: 0 0 230px"    mode="side" opened style="min-height: 100%;">
       <md-nav-list>
         <h2 style="text-align:center;">Students</h2>
         <md-list-item  *ngFor="let student of students" (click)="onStudentSelected(student)">
            <!-- <md-icon svgIcon="{{student.Avatar}}" class="avatar"></md-icon> -->
-          <h3 style="padding-left: 1em">{{student.Name}}</h3>
+          <h3 style="padding-left: 1em">{{student.FirstName + ' ' + student.LastName}}</h3>
         </md-list-item>
       </md-nav-list>
     </md-sidenav>

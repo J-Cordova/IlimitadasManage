@@ -5,16 +5,16 @@
 
 
 
-    <div fxLayout="row" fxLayoutAlign="start center">
+    <!-- <div fxLayout="row" fxLayoutAlign="start center">
       <md-icon mdInput svgIcon="{{selectedAvatar}}" class="avatar"></md-icon>
         <md-select (change)="handleStudentTypeChange($event)" [(ngModel)]="Type" name="Type" fxFlex >
           <md-option value="0">Dog</md-option>
           <md-option value="1">Cat</md-option>
         </md-select>
-      </div>
+      </div> -->
 
     <md-input-container>
-      <input mdInput [(ngModel)]="student.Name" name="Name" placeholder="Name" required>
+      <input mdInput [(ngModel)]="student.FirstName" name="Name" placeholder="Name" required>
     </md-input-container>
 
     <md-input-container>

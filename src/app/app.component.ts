@@ -41,8 +41,7 @@ export class AppComponent
     const self = this;
     this.dialog.open(DialogComponent).afterClosed()
       .filter(result => !!result)
-      .subscribe(data => {
-         const student: Student = StudentFactory.CreateStudent(data);
+      .subscribe(student => {
          self.students.push(student);
          self.selectedStudent = student;
       });
