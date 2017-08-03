@@ -22,14 +22,25 @@ constructor(private http: Http) { }
       FirstName: 'Jordan',
       LastName: 'Cordova',
       Picture: '',
-      Description: 'Newish Student',
       Avatar: '',
       Belt: 'Purple',
       Stripes: '2',
       BirthDay: new Date('09/04/1991'),
       Information: 'New Guy',
       Payments: null
-    }];
+    },
+    {
+      FirstName: 'Forrest',
+      LastName: 'Cordova',
+      Picture: '',
+      Avatar: '',
+      Belt: 'White',
+      Stripes: '1',
+      BirthDay: new Date('09/04/1991'),
+      Information: 'New Guy',
+      Payments: null
+    }
+  ];
 }
 
 

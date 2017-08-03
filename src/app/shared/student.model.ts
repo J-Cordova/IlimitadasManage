@@ -4,7 +4,6 @@ export class Student
     FirstName: String;
     LastName: String;
     Picture: String;
-    Description: String;
     Avatar: String;
     Belt: String;
     Stripes: String;

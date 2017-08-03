@@ -1,35 +1,75 @@
-
-
-<h2>{{selectedStudent.FirstName + ' ' + selectedStudent.LastName}}</h2>
+<h2 style="text-align:center;">{{selectedStudent.FirstName + ' ' + selectedStudent.LastName}}</h2>
 
 <md-tab-group md-stretch-tabs="yes">
-
-
   <md-tab label="Student Information">
+    <div class="content" fxLayout="row" fxLayout.sm="column" fxLayoutGap="16px">
+      <md-card fxFlex="100">
+        <form #studentForm="ngForm" (ngSubmit)="submit(studentForm.value)" ngNativeValidate>
+
+          <div fxLayout="column" fxLayout="row" fxLayoutGap="8px">
+            <md-input-container fxFlex="50">
+              <input mdInput name="FirstName" placeholder="First Name" [ngModel]="selectedStudent.FirstName" required/>
+            </md-input-container>
+
+            <md-input-container fxFlex="50">
+              <input mdInput name="LastName" placeholder="Last Name" [ngModel]="selectedStudent.LastName" required>
+            </md-input-container>
+          </div>
+
+          <div fxLayout="row" fxLayoutGap="8px">
+            <md-input-container fxFlex="50">
+              <input mdInput name="Belt" placeholder="Belt" [ngModel]="selectedStudent.Belt" required>
+            </md-input-container>
+
+            <md-input-container fxFlex="50">
+              <input mdInput name="Stripes" placeholder="Stripes" type="number" min="0" max="4" [ngModel]="selectedStudent.Stripes" required>
+            </md-input-container>
+          </div>
+
+          <div fxLayout="row" fxLayoutGap="8px">
+            <md-input-container fxFlex="50">
+              <input mdInput name="BirthDay" placeholder="Birth Date" type="date" [ngModel]="selectedStudent.BirthDay" required/>
+            </md-input-container>
+            <md-input-container fxFlex="50">
+              <textarea mdInput name="Information" placeholder="Information" rows="15" cols="60" [ngModel]="selectedStudent.Information"></textarea>
+            </md-input-container>
+
+          </div>
+
+          <md-dialog-actions align="end">
+            <button md-button type="button">Cancel</button>
+            <button md-button type="submit">Save Student</button>
+          </md-dialog-actions>
+
+        </form>
+      </md-card>
+    </div>
+
+
+  </md-tab>
+
+  <!-- <md-tab label="Student Information">
       <div  class="content" fxLayout="row" fxLayout.sm="column" fxLayoutGap="16px">
       <md-card fxFlex="50">
-        <!-- <img style="max-width:100%; max-height:100%; " class="" src="{{selectedStudent.Picture}}"/> -->
+         <img style="max-width:100%; max-height:100%; " class="" src="{{selectedStudent.Picture}}"/>
       </md-card>
       <md-card fxFlex="50">
         <h2>{{selectedStudent.FirstName + ' ' + selectedStudent.LastName}}</h2>
-        <!-- <p>{{selectedStudent.Type ?  "Cat" : "Dog"}}</p> -->
+
         <p>{{selectedStudent.Description}}</p>
       </md-card>
     </div>
-  </md-tab>
-
+  </md-tab> -->
 
   <md-tab label="Payment History">
-      <div  class="content" fxLayout="row" fxLayout.sm="column" fxLayoutGap="16px">
+    <div class="content" fxLayout="row" fxLayout.sm="column" fxLayoutGap="16px">
       <md-card fxFlex="50">
         <!-- <img style="max-width:100%; max-height:100%; " class="" src="{{selectedStudent.Picture}}"/> -->
       </md-card>
       <md-card fxFlex="50">
         <h2>{{selectedStudent.FirstName + ' ' + selectedStudent.LastName}}</h2>
-        <!-- <p>{{selectedStudent.Type ?  "Cat" : "Dog"}}</p> -->
-        <p>{{selectedStudent.Description}}</p>
+        <!-- <p>{{selectedStudent.Description}}</p> -->
       </md-card>
     </div>
   </md-tab>
 </md-tab-group>
-
