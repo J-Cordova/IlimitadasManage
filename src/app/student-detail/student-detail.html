@@ -8,36 +8,36 @@
 
           <div fxLayout="column" fxLayout="row" fxLayoutGap="8px">
             <md-input-container fxFlex="50">
-              <input mdInput name="FirstName" placeholder="First Name" [ngModel]="selectedStudent.FirstName" required/>
+              <input mdInput name="FirstName" placeholder="First Name" [(ngModel)]="origData.FirstName" required/>
             </md-input-container>
 
             <md-input-container fxFlex="50">
-              <input mdInput name="LastName" placeholder="Last Name" [ngModel]="selectedStudent.LastName" required>
+              <input mdInput name="LastName" placeholder="Last Name" [(ngModel)]="origData.LastName" required>
             </md-input-container>
           </div>
 
           <div fxLayout="row" fxLayoutGap="8px">
             <md-input-container fxFlex="50">
-              <input mdInput name="Belt" placeholder="Belt" [ngModel]="selectedStudent.Belt" required>
+              <input mdInput name="Belt" placeholder="Belt" [(ngModel)]="origData.Belt" required>
             </md-input-container>
 
             <md-input-container fxFlex="50">
-              <input mdInput name="Stripes" placeholder="Stripes" type="number" min="0" max="4" [ngModel]="selectedStudent.Stripes" required>
+              <input mdInput name="Stripes" placeholder="Stripes" type="number" min="0" max="4" [(ngModel)]="origData.Stripes" required>
             </md-input-container>
           </div>
 
           <div fxLayout="row" fxLayoutGap="8px">
             <md-input-container fxFlex="50">
-              <input mdInput name="BirthDay" placeholder="Birth Date" type="date" [ngModel]="selectedStudent.BirthDay" required/>
+              <input mdInput name="BirthDay" placeholder="Birth Date" type="date" [(ngModel)]="origData.BirthDay" required/>
             </md-input-container>
             <md-input-container fxFlex="50">
-              <textarea mdInput name="Information" placeholder="Information" rows="15" cols="60" [ngModel]="selectedStudent.Information"></textarea>
+              <textarea mdInput name="Information" placeholder="Information" rows="15" cols="60" [(ngModel)]="origData.Information"></textarea>
             </md-input-container>
 
           </div>
 
           <md-dialog-actions align="end">
-            <button md-button type="button">Cancel</button>
+            <button md-button type="button" (click)="reset()">Reset</button>
             <button md-button type="submit">Save Student</button>
           </md-dialog-actions>
 

@@ -18,26 +18,21 @@ export class StudentDetailComponent {
 
   constructor(private animalSelectService: StudentSelectedService)
   {
-    //animalSelectService.animalSelectedEvent.subscribe(animal => this.selectedAnimal = animal);
+    // animalSelectService.animalSelectedEvent.subscribe(animal => this.selectedAnimal = animal);
   }
    ngOnChanges(changes: SimpleChanges): void {
     if (changes['selectedStudent']) {
-      debugger;
-      this.origData = this.selectedStudent;
+      this.origData = Object.assign({}, this.selectedStudent); // JSON.parse(JSON.stringify(this.selectedStudent));
     }
    }
 
   submit(data)
   {
-    if (data != null)
-      {
-      this.selectedStudent = data;
-    }
+     this.selectedStudent = this.origData;
   }
 
-  rest(data)
+  reset(data)
   {
-    debugger;
-      this.selectedStudent = this.origData;
+    this.origData = Object.assign({}, this.selectedStudent); // JSON.parse(JSON.stringify(this.selectedStudent));
   }
 }
