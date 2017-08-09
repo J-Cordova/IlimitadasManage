@@ -6,6 +6,7 @@ import { DialogComponent } from './dialog/dialog.component';
 import { StudentFactory } from './shared/student.factory';
 import { Student } from './shared/student.model';
 import { StudentService } from './shared/student.service';
+import { StudentUpdateService } from './shared/student-update.service';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +20,7 @@ export class AppComponent
   selectedStudent: Student;
 
   constructor(private iconRegistry: MdIconRegistry, private sanitizer: DomSanitizer,
-              private dialog: MdDialog, private studentService: StudentService)
+              private dialog: MdDialog, private studentService: StudentService, private updateService: StudentUpdateService)
   {
     this.registerIcons();
 
@@ -28,6 +29,18 @@ export class AppComponent
     {
       this.students = students;
       if (students.length) this.selectedStudent = students[0];
+    });
+
+    updateService.studentChangedEvent.subscribe((student: Student) =>
+    {
+      this.students.forEach((x, i) =>
+      {
+        if (x.Id === student.Id)
+        {
+          this.students[i] = student;
+          return;
+        }
+      });
     });
   }
 

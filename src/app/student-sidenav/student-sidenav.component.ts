@@ -23,5 +23,4 @@ export class StudentSideNavComponent
   {
     this.selectedStudent.emit(student);
   }
-
 }

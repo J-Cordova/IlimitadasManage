@@ -2,73 +2,79 @@
 
 <md-tab-group md-stretch-tabs="yes">
   <md-tab label="Student Information">
-    <div class="content" fxLayout="row" fxLayout.sm="column" fxLayoutGap="16px">
-      <md-card fxFlex="100">
+    <div fxFlex class="content center">
+      <md-card fxFlex="50">
         <form #studentForm="ngForm" (ngSubmit)="submit(studentForm.value)" ngNativeValidate>
 
-          <div fxLayout="column" fxLayout="row" fxLayoutGap="8px">
-            <md-input-container fxFlex="50">
-              <input mdInput name="FirstName" placeholder="First Name" [(ngModel)]="origData.FirstName" required/>
-            </md-input-container>
+          <div fxLayout="row" fxLayoutGap="8px">
+            <div fxLayout="column" fxFlex="100" fxLayoutGap="8px">
+              <md-input-container>
+                <input mdInput name="FirstName" placeholder="First Name" [(ngModel)]="formData.FirstName" required/>
+              </md-input-container>
 
-            <md-input-container fxFlex="50">
-              <input mdInput name="LastName" placeholder="Last Name" [(ngModel)]="origData.LastName" required>
-            </md-input-container>
+              <md-input-container>
+                <input mdInput name="LastName" placeholder="Last Name" [(ngModel)]="formData.LastName" required>
+              </md-input-container>
+
+              <md-select mdInput name="Belt" placeholder="Belt" [(ngModel)]="formData.Belt" required>
+                <md-option value="White">White</md-option>
+                <md-option value="Blue">Blue</md-option>
+                <md-option value="Purple">Purple</md-option>
+                <md-option value="Brown">Brown</md-option>
+                <md-option value="Black">Black</md-option>
+              </md-select>
+
+              <md-select mdInput style="padding-top: 15px;" name="Stripes" placeholder="Stripes" type="number" min="0" max="4" [(ngModel)]="formData.Stripes"
+                required>
+                <md-option value="1">1</md-option>
+                <md-option value="2">2</md-option>
+                <md-option value="3">3</md-option>
+                <md-option value="4">4</md-option>
+              </md-select>
+
+              <md-input-container>
+                <input mdInput name="Birthday" [mdDatepicker]="picker" [(ngModel)]="formData.BirthDay" placeholder="Choose a date">
+                <button mdSuffix [mdDatepickerToggle]="picker"></button>
+              </md-input-container>
+              <md-datepicker #picker></md-datepicker>
+
+              <md-input-container>
+                <textarea mdInput name="Information" placeholder="Information" rows="5" cols="40" [(ngModel)]="formData.Information"></textarea>
+              </md-input-container>
+
+            </div>
           </div>
 
           <div fxLayout="row" fxLayoutGap="8px">
-            <md-input-container fxFlex="50">
-              <input mdInput name="Belt" placeholder="Belt" [(ngModel)]="origData.Belt" required>
-            </md-input-container>
-
-            <md-input-container fxFlex="50">
-              <input mdInput name="Stripes" placeholder="Stripes" type="number" min="0" max="4" [(ngModel)]="origData.Stripes" required>
-            </md-input-container>
+            <md-dialog-actions style="text-align:right">
+              <button md-button type="button" (click)="reset()">Reset</button>
+              <button md-button type="submit">Save Student</button>
+            </md-dialog-actions>
           </div>
-
-          <div fxLayout="row" fxLayoutGap="8px">
-            <md-input-container fxFlex="50">
-              <input mdInput name="BirthDay" placeholder="Birth Date" type="date" [(ngModel)]="origData.BirthDay" required/>
-            </md-input-container>
-            <md-input-container fxFlex="50">
-              <textarea mdInput name="Information" placeholder="Information" rows="15" cols="60" [(ngModel)]="origData.Information"></textarea>
-            </md-input-container>
-
-          </div>
-
-          <md-dialog-actions align="end">
-            <button md-button type="button" (click)="reset()">Reset</button>
-            <button md-button type="submit">Save Student</button>
-          </md-dialog-actions>
 
         </form>
       </md-card>
+
     </div>
-
-
   </md-tab>
 
-  <!-- <md-tab label="Student Information">
-      <div  class="content" fxLayout="row" fxLayout.sm="column" fxLayoutGap="16px">
-      <md-card fxFlex="50">
-         <img style="max-width:100%; max-height:100%; " class="" src="{{selectedStudent.Picture}}"/>
-      </md-card>
-      <md-card fxFlex="50">
-        <h2>{{selectedStudent.FirstName + ' ' + selectedStudent.LastName}}</h2>
-
-        <p>{{selectedStudent.Description}}</p>
-      </md-card>
-    </div>
-  </md-tab> -->
 
   <md-tab label="Payment History">
-    <div class="content" fxLayout="row" fxLayout.sm="column" fxLayoutGap="16px">
-      <md-card fxFlex="50">
-        <!-- <img style="max-width:100%; max-height:100%; " class="" src="{{selectedStudent.Picture}}"/> -->
-      </md-card>
-      <md-card fxFlex="50">
-        <h2>{{selectedStudent.FirstName + ' ' + selectedStudent.LastName}}</h2>
-        <!-- <p>{{selectedStudent.Description}}</p> -->
+    <div class="content center" fxLayout="row" fxLayout.sm="column" fxLayoutGap="16px">
+      <md-card fxFlex="75">
+
+
+        <md-list>
+          <md-list-item *ngFor="let payment of selectedStudent.Payments">
+            <!-- <md-icon md-list-icon>folder</md-icon> -->
+            <h4 md-line>{{payment.PaymentDate | date}}</h4>
+            <p md-line> {{payment.PaymentAmount }} </p>
+            <p md-line> {{payment.Description }} </p>
+          </md-list-item>
+          <md-divider></md-divider>
+        </md-list>
+
+
       </md-card>
     </div>
   </md-tab>

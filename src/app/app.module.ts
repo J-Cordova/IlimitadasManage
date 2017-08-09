@@ -1,10 +1,11 @@
+import { StudentUpdateService } from './shared/student-update.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MaterialModule} from '@angular/material';
+import {MaterialModule, MdNativeDateModule} from '@angular/material';
 import {FlexLayoutModule} from '@angular/flex-layout';
 
 import { StudentDetailComponent } from './student-detail/student-detail.component';
@@ -29,8 +30,9 @@ import { StudentSelectedService } from './shared/student-selected.service';
     MaterialModule,
     FlexLayoutModule,
     BrowserAnimationsModule,
+    MdNativeDateModule
   ],
-  providers: [StudentService, StudentSelectedService],
+  providers: [StudentService, StudentSelectedService, StudentUpdateService],
   entryComponents: [DialogComponent],
   bootstrap: [AppComponent]
 })

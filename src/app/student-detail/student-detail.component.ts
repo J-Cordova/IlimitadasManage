@@ -1,8 +1,9 @@
-import { Component, Input, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Student } from '../shared/student.model';
 import { StudentSelectedService } from '../shared/student-selected.service';
 import { MdDialogRef } from '@angular/material';
 import { DialogComponent } from '../dialog/dialog.component';
+import { StudentUpdateService } from '../shared/student-update.service';
 
 @Component({
   selector: 'student-detail',
@@ -10,29 +11,28 @@ import { DialogComponent } from '../dialog/dialog.component';
   styleUrls: ['./student-detail.css'],
 })
 
-export class StudentDetailComponent {
-
+export class StudentDetailComponent implements OnChanges {
 
   @Input() selectedStudent: Student;
-  origData: Student;
+  formData: Student;
 
-  constructor(private animalSelectService: StudentSelectedService)
+  constructor(private animalSelectService: StudentSelectedService, private studentUpdateService: StudentUpdateService)
   {
-    // animalSelectService.animalSelectedEvent.subscribe(animal => this.selectedAnimal = animal);
   }
-   ngOnChanges(changes: SimpleChanges): void {
+
+  ngOnChanges(changes: SimpleChanges): void {
     if (changes['selectedStudent']) {
-      this.origData = Object.assign({}, this.selectedStudent); // JSON.parse(JSON.stringify(this.selectedStudent));
+      this.formData = Object.assign({}, this.selectedStudent);
     }
    }
 
-  submit(data)
+  submit()
   {
-     this.selectedStudent = this.origData;
+     this.studentUpdateService.studentChangedEvent.emit(this.formData);
   }
 
   reset(data)
   {
-    this.origData = Object.assign({}, this.selectedStudent); // JSON.parse(JSON.stringify(this.selectedStudent));
+    this.formData = Object.assign({}, this.selectedStudent);
   }
 }
