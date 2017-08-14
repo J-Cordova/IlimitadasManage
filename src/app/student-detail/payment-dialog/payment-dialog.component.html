@@ -1,0 +1,33 @@
+<h3>Add Payment</h3>
+<form #paymentForm="ngForm" (ngSubmit)="dialogRef.close(formData)" ngNativeValidate>
+  <div fxLayout="row" fxLayoutGap="8px">
+    <div fxLayout="column" fxFlex="100" fxLayoutGap="8px">
+
+      <md-input-container>
+        <input mdInput placeholder="Amount" name="PaymentAmount" [(ngModel)]="formData.PaymentAmount" required/>
+      </md-input-container>
+
+
+      <!-- <md-input-container>
+        <input mdInput name="PaymentDate" type="date" [(ngModel)]="formData.PaymentDate" placeholder="Choose a date">
+      </md-input-container> -->
+       <md-input-container>
+        <input name="PaymentDate" mdInput type="date" [mdDatepicker]="dpicker" [(ngModel)]="formData.PaymentDate" placeholder="Choose a date" required>
+        <button mdSuffix [mdDatepickerToggle]="dpicker"></button>
+      </md-input-container>
+      <md-datepicker #dpicker></md-datepicker>
+
+
+      <md-input-container>
+        <textarea mdInput placeholder="Description" name="Description" rows="5" cols="40" [(ngModel)]="formData.Description"></textarea>
+      </md-input-container>
+
+    </div>
+  </div>
+  <div fxLayout="row" fxLayoutGap="8px">
+    <md-dialog-actions style="text-align:right">
+      <button md-button type="button" (click)="reset()">Reset</button>
+      <button md-button type="submit" ngForm>Save Payment</button>
+    </md-dialog-actions>
+  </div>
+</form>

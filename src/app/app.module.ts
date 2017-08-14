@@ -1,3 +1,5 @@
+import { PaymentUpdateService } from './shared/payment-update.service';
+import { PaymentDialogComponent } from './student-detail/payment-dialog/payment-dialog.component';
 import { StudentUpdateService } from './shared/student-update.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -21,7 +23,8 @@ import { StudentSelectedService } from './shared/student-selected.service';
     AppComponent,
     DialogComponent,
     StudentSideNavComponent,
-    StudentDetailComponent
+    StudentDetailComponent,
+    PaymentDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -32,8 +35,8 @@ import { StudentSelectedService } from './shared/student-selected.service';
     BrowserAnimationsModule,
     MdNativeDateModule
   ],
-  providers: [StudentService, StudentSelectedService, StudentUpdateService],
-  entryComponents: [DialogComponent],
+  providers: [StudentService, StudentSelectedService, StudentUpdateService, PaymentUpdateService],
+  entryComponents: [DialogComponent,PaymentDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

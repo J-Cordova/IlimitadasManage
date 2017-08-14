@@ -1,9 +1,9 @@
 <h2 style="text-align:center;">{{selectedStudent.FirstName + ' ' + selectedStudent.LastName}}</h2>
 
 <md-tab-group md-stretch-tabs="yes">
-  <md-tab label="Student Information">
-    <div fxFlex class="content center">
-      <md-card fxFlex="50">
+  <md-tab fxFlex label="Student Information" class="content center">
+    <div class="content center" style="padding:10px 10px 0px 10px; max-height:570px" fxFlex fxLayoutGap="8px">
+      <md-card fxFlex="50" class="center">
         <form #studentForm="ngForm" (ngSubmit)="submit(studentForm.value)" ngNativeValidate>
 
           <div fxLayout="row" fxLayoutGap="8px">
@@ -45,37 +45,63 @@
             </div>
           </div>
 
-          <div fxLayout="row" fxLayoutGap="8px">
-            <md-dialog-actions style="text-align:right">
-              <button md-button type="button" (click)="reset()">Reset</button>
-              <button md-button type="submit">Save Student</button>
-            </md-dialog-actions>
-          </div>
-
         </form>
+        <md-card-actions style="text-align: right;padding-right: 10px;">
+          <button md-raised-button type="submit">Save Student</button>
+          <button md-raised-button type="button" (click)="reset()">Reset</button>
+        </md-card-actions>
       </md-card>
 
     </div>
   </md-tab>
+  <md-tab label="Payment Information" fxFlex class="content">
+    <div class="content center" fxLayout="row" fxLayout.sm="column" fxLayoutGap="16px">
+      <md-card fxFlex="55" class="center">
+         <md-card-content style="max-height:600px; overflow-y:auto;">
+        <p *ngIf="!selectedStudent.Payments.length"> No notes for {{selectedStudent.FirstName + ' ' + selectedStudent.LastName}}, yet.</p>
+        <!-- <div style="max-height:500px; overflow-y:auto"> -->
+          <div style="padding: 5px;" *ngFor="let payment of selectedStudent.Payments" >
+            <md-card style="margin-bottom: 10px;" >
+              <md-card-content>
+                <h3 class="inline">Payment Amount: &nbsp;&nbsp;</h3>
+                <h4 class="inline">${{payment.PaymentAmount}}</h4> <br><br>
+                <h3 class="inline">Payment Date: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h3>
+                <h4 class="inline">{{payment.PaymentDate | date:'fullDate'}}</h4><br><br>
+                <h3 class="inline">Payment Details: &nbsp;&nbsp;&nbsp;&nbsp;</h3>
+                <p style="font-weight:600" class="inline">{{payment.Description}}</p><br><br>
+              </md-card-content>
+              <!-- <md-card-actions layout="row" layout-align="end center">
+              <button ng-click="vm.removeNote(note)">Remove</button>
+            </md-card-actions> -->
+            </md-card>
+      </div>
+
+         </md-card-content>
+        <!-- </div> -->
+        <md-card-actions style="text-align: right;padding-right: 15px;">
+          <button md-raised-button type="button" (click)="openPaymentDialog()">Add Payment</button>
+        </md-card-actions>
+      </md-card>
+    </div>
 
 
+  </md-tab>
+  <!--
   <md-tab label="Payment History">
     <div class="content center" fxLayout="row" fxLayout.sm="column" fxLayoutGap="16px">
-      <md-card fxFlex="75">
-
-
-        <md-list>
-          <md-list-item *ngFor="let payment of selectedStudent.Payments">
-            <!-- <md-icon md-list-icon>folder</md-icon> -->
-            <h4 md-line>{{payment.PaymentDate | date}}</h4>
-            <p md-line> {{payment.PaymentAmount }} </p>
-            <p md-line> {{payment.Description }} </p>
-          </md-list-item>
-          <md-divider></md-divider>
-        </md-list>
-
-
+      <md-card fxFlex="50">
+        <p *ngIf="!selectedStudent.Payments.length"> No notes for {{selectedStudent.FirstName + ' ' + selectedStudent.LastName}}, yet.</p>
+          <md-card style="margin-bottom: 10px;" *ngFor="let payment of selectedStudent.Payments">
+            <md-card-content>
+              <h3 class="inline">Payment Amount: &nbsp;&nbsp;</h3> <h4 class="inline">${{payment.PaymentAmount}}</h4> <br><br>
+              <h3 class="inline" >Payment Date: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h3> <h4 class="inline">{{payment.PaymentDate | date:'fullDate'}}</h4><br><br>
+              <h3 class="inline">Payment Details: &nbsp;&nbsp;&nbsp;&nbsp;</h3> <p style="font-weight:600" class="inline">{{payment.Description}}</p><br><br>
+            </md-card-content>
+              <md-card-actions layout="row" layout-align="end center">
+              <button ng-click="vm.removeNote(note)">Remove</button>
+            </md-card-actions>
+          </md-card>
       </md-card>
     </div>
-  </md-tab>
+  </md-tab> -->
 </md-tab-group>

@@ -1,3 +1,4 @@
+import { Payment } from './payment.model';
 import { Injectable } from '@angular/core';
 import { Student } from './student.model';
 import { Observable } from 'rxjs/Observable';
@@ -29,7 +30,38 @@ constructor(private http: Http) { }
       Stripes: '2',
       BirthDay: new Date('09/04/1991'),
       Information: 'New Guy',
-      Payments: null
+      Payments: [
+        {
+          PaymentDate: new Date('09/04/1995'),
+          PaymentAmount: 60.00,
+          Description: 'Paid in Full'
+        },
+        {
+          PaymentDate: new Date('09/04/1995'),
+          PaymentAmount: 60.00,
+          Description: 'Paid in Full'
+        },
+        {
+          PaymentDate: new Date('09/04/1995'),
+          PaymentAmount: 60.00,
+          Description: 'Paid in Full'
+        },
+        // {
+        //   PaymentDate: new Date('09/04/1995'),
+        //   PaymentAmount: 60.00,
+        //   Description: 'Paid in Full'
+        // },
+        // {
+        //   PaymentDate: new Date('09/04/1995'),
+        //   PaymentAmount: 60.00,
+        //   Description: 'Paid in Full'
+        // },
+        // {
+        //   PaymentDate: new Date('09/04/1995'),
+        //   PaymentAmount: 60.00,
+        //   Description: 'Paid in Full'
+        // },
+      ]
     },
     {
       Id: GuidGenerator.Next(),
@@ -41,7 +73,7 @@ constructor(private http: Http) { }
       Stripes: '1',
       BirthDay: new Date('09/04/1995'),
       Information: 'New Guy',
-      Payments: null
+      Payments: []
     }
   ];
 }

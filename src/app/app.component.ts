@@ -5,8 +5,11 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { DialogComponent } from './dialog/dialog.component';
 import { StudentFactory } from './shared/student.factory';
 import { Student } from './shared/student.model';
+import { Payment } from './shared/payment.model';
+import { PaymentUpdateModel } from './shared/payment-update.model';
 import { StudentService } from './shared/student.service';
 import { StudentUpdateService } from './shared/student-update.service';
+import { PaymentUpdateService } from './shared/payment-update.service';
 
 @Component({
   selector: 'app-root',
@@ -20,7 +23,8 @@ export class AppComponent
   selectedStudent: Student;
 
   constructor(private iconRegistry: MdIconRegistry, private sanitizer: DomSanitizer,
-              private dialog: MdDialog, private studentService: StudentService, private updateService: StudentUpdateService)
+              private dialog: MdDialog, private studentService: StudentService, private studentUpdateService: StudentUpdateService,
+              private paymentUpdateService: PaymentUpdateService)
   {
     this.registerIcons();
 
@@ -31,7 +35,7 @@ export class AppComponent
       if (students.length) this.selectedStudent = students[0];
     });
 
-    updateService.studentChangedEvent.subscribe((student: Student) =>
+    studentUpdateService.studentChangedEvent.subscribe((student: Student) =>
     {
       this.students.forEach((x, i) =>
       {
@@ -42,7 +46,20 @@ export class AppComponent
         }
       });
     });
+
+    paymentUpdateService.paymentChangedEvent.subscribe((model: PaymentUpdateModel) =>
+    {
+      this.students.forEach((x, i) =>
+      {
+        if (x.Id === model.StudentId)
+        {
+          this.students[i].Payments = model.Payments;
+          return;
+        }
+      });
+    });
   }
+
 
   onStudentSelected($event)
   {
