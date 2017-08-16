@@ -1,5 +1,6 @@
 import { GuidGenerator } from './guid-generator';
 import { Student } from './student.model';
+import { Payment } from './payment.model';
 
 export class StudentFactory {
     public static CreateStudent(data): Student
@@ -14,7 +15,7 @@ export class StudentFactory {
             Stripes: data.Stripes ? data.Stripes : '',
             BirthDay: data.BirthDay ? data.BirthDay : new Date(),
             Information: data.Information ? data.Information : '',
-            Payments: null
+            Payments: new Array<Payment>()
         };
 
         return student;
